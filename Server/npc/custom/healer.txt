@@ -15,7 +15,7 @@
 -	script	Healer	-1,{
 
 	.@price = 0;	// Zeny required for heal
-	.@Buffs = 0;	// Also buff players? (1: yes / 0: no)
+	.@Buffs = 1;	// Also buff players? (1: yes / 0: no)
 	.@Delay = 0;	// Heal delay, in seconds
 
 	if (@HD > gettimetick(2)) end;
@@ -45,7 +45,7 @@ comodo,184,158,6	duplicate(Healer)	Healer#com	4_PORING
 einbech,57,36,6	duplicate(Healer)	Healer#einbe	4_PORING
 einbroch,57,202,6	duplicate(Healer)	Healer#einbr	4_PORING
 geffen,115,72,6	duplicate(Healer)	Healer#gef	4_PORING
-gonryun,156,122,6	duplicate(Healer)	Healer#gon	4_PORING
+gonryun,154,122,6	duplicate(Healer)	Healer#gon	4_PORING
 hugel,89,150,6	duplicate(Healer)	Healer#hug	4_PORING
 izlude,125,118,5	duplicate(Healer)	Healer#izl	4_PORING
 jawaii,250,139,4	duplicate(Healer)	Healer#jaw	4_PORING
