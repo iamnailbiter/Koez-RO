@@ -502,7 +502,7 @@ einbroch,59,203,6	script	Kafra Employee#ein1::kaf_einbroch2	4_F_KAFRA9,{
 
 // Gonryun
 //============================================================
-gonryun,159,122,4	script	Kafra Employee::kaf_gonryun	4_F_KAFRA2,{
+gonryun,160,122,4	script	Kafra Employee::kaf_gonryun	4_F_KAFRA2,{
 	cutin "kafra_02",2;
 	mes "[Kafra Employee]";
 	mes "Welcome to the";

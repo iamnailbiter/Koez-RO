@@ -1,0 +1,148 @@
+// Made by iTouch
+// ----------------------------------------------------------------------------
+// Ultimate PvP Warper ver. 1
+// Features:
+// Baby PvP Room
+// PvP Square(Every 2 days Random PvP Room)
+// PvP Nightmare
+// PvP Lowlvl( Supports 1 - 150 Lvl)
+// PvP No Potion (Berrys , Ygg seed , Any potions , etc. are restricted)
+// PvP Non Donator (Got Items are restricted here)
+// -----------------------------------------------------------------------------
+// ver. 2 update idea:
+// Adding a PvP Room that removes the buffs of the player when entering the room
+// Adding a PvP Room for GM's Only so GM's will have fun
+// -----------------------------------------------------------------------------
+// Special thanks to:
+// icescope of eAthena for helping me configuring the error at PvP Square
+// -----------------------------------------------------------------------------
+
+-	script	Ultimate PvP Warper	-1,{
+	//if (.pvp_square$=="") donpcevent "Ultimate PVP warper::OnClock0000";
+ 	cutin "3rd_sura_master",2;
+	mes "[PvP Warper]";
+	mes "Which arena do you want to go to?";
+	switch(select("PVP Square ["+getmapusers("guild_vs3")+"/100]:Champion PvP Room ["+getmapusers("guild_vs2")+"/100]:Baby PvP Room ["+getmapusers("guild_vs4")+"/100]")) {
+	case 1: // PVP Square
+		if (getmapusers(.pvp_square$) > 99) callsub S_full;
+		callsub S_payment;
+		announce ""+ strcharinfo(0) +" menantang bertarung di Pvp Room..",bc_all; //announce and end
+		warp "guild_vs3",0,0;
+		end;
+ 
+	case 2: // Champion PvP Room
+		if (getmapusers("guild_vs2") > 99) callsub S_full;
+		if (Class != Job_Champion && Class != Job_Sura_T) goto L_NotChamp;
+		callsub S_payment;
+		announce ""+ strcharinfo(0) +" menantang bertarung di Champion PvP Room..",bc_all;
+		warp "guild_vs2",0,0;
+		end;
+L_NotChamp:
+		mes "Kamu bukan Champion...";
+		cutin "",2;
+		close;
+
+	case 3: // Baby PvP Room
+		if (getmapusers("guild_vs4") > 99) callsub S_full;
+		if (Class < 4023 || Class > 4045) goto L_NotBaby;
+		callsub S_payment;
+		announce ""+ strcharinfo(0) +" menantang bertarung di Baby Pvp Room..",bc_all; //announce and end
+		warp "guild_vs4",0,0;
+		end;
+
+L_NotBaby:
+		mes "Only baby can enter this room";
+		close;	
+ 
+	}
+ 
+S_full:
+	mes " ";
+	mes "I'm sorry, this arena is full.  Please try again later...";
+	close;
+S_payment:
+	if (Zeny < 0) {
+		mes "You don't have enough zeny.";
+		mes "It costs "+(200*BaseLevel + 800)+" zeny for you to enter.";
+		close;
+	}
+	set Zeny, Zeny - 0;
+	return;
+ 
+OnInit:
+	   waitingroom "PvP Warper",0;
+    end;
+
+}
+ 
+moscovia.gat,226,198,4	duplicate(Ultimate PvP Warper)	Ultimate PvP Warper#1	483
+prontera.gat,151,190,6	duplicate(Ultimate PvP Warper)	Ultimate PvP Warper#2	483
+alberta.gat,110,140,3	duplicate(Ultimate PvP Warper)	Ultimate PvP Warper#3	483
+aldebaran.gat,147,115,1	duplicate(Ultimate PvP Warper)	Ultimate PvP Warper#4	483
+amatsu.gat,207,86,3	duplicate(Ultimate PvP Warper)	Ultimate PvP Warper#5	483
+ayothaya.gat,155,117,2	duplicate(Ultimate PvP Warper)	Ultimate PvP Warper#6	483
+comodo.gat,206,80,4	duplicate(Ultimate PvP Warper)	Ultimate PvP Warper#7	483
+einbech.gat,198,83,4	duplicate(Ultimate PvP Warper)	Ultimate PvP Warper#8	483
+einbroch.gat,174,172,5	duplicate(Ultimate PvP Warper)	Ultimate PvP Warper#9	483
+geffen.gat,125,71,4	duplicate(Ultimate PvP Warper)	Ultimate PvP Warper#10	483
+gonryun.gat,163,122,4	duplicate(Ultimate PvP Warper)	Ultimate PvP Warper#11	483
+hugel.gat,89,151,5	duplicate(Ultimate PvP Warper)	Ultimate PvP Warper#12	483
+izlude.gat,134,90,4	duplicate(Ultimate PvP Warper)	Ultimate PvP Warper#13	483
+lighthalzen.gat,166,101,4	duplicate(Ultimate PvP Warper)	Ultimate PvP Warper#14	483
+louyang.gat,214,120,5	duplicate(Ultimate PvP Warper)	Ultimate PvP Warper#15	483
+xmas.gat,154,136,4	duplicate(Ultimate PvP Warper)	Ultimate PvP Warper#16	483
+morocc.gat,160,97,4	duplicate(Ultimate PvP Warper)	Ultimate PvP Warper#17	483
+payon.gat,148,226,4	duplicate(Ultimate PvP Warper)	Ultimate PvP Warper#18	483
+rachel.gat,135,115,4	duplicate(Ultimate PvP Warper)	Ultimate PvP Warper#19 	483
+veins.gat,219,127,4	duplicate(Ultimate PvP Warper)	Ultimate PvP Warper#20	483
+yuno.gat,163,170,4	duplicate(Ultimate PvP Warper)	Ultimate PvP Warper#21	483
+umbala.gat,106,159,3	duplicate(Ultimate PvP Warper)	Ultimate PvP Warper#22	483
+dewata.gat,193,180,6	duplicate(Ultimate PvP Warper)	Ultimate PvP Warper#23	483
+Crystilia.gat,77,89,4	duplicate(Ultimate PvP Warper)	Ultimate PvP Warper#24	483
+
+// Mapflags
+pvp_y_1-2	mapflag	nocommand	1
+guild_vs2	mapflag	pvp
+guild_vs4	mapflag	pvp
+guild_vs5	mapflag	pvp
+guild_vs1-2	mapflag	pvp
+guild_vs3	mapflag	pvp
+guild_vs1	mapflag	pvp
+pvp_y_8-2	mapflag	pvp
+1@orcs	mapflag	pvp
+ 
+guild_vs2	mapflag	noreturn
+guild_vs5	mapflag	noreturn
+guild_vs4	mapflag	noreturn
+guild_vs1-2	mapflag	noreturn
+guild_vs3	mapflag	noreturn
+guild_vs1	mapflag	noreturn
+pvp_y_8-2	mapflag	noreturn
+1@orcs	mapflag	noreturn
+
+guild_vs2	mapflag	nocommand	1
+guild_vs5	mapflag	nocommand	1
+guild_vs4	mapflag	nocommand	1
+guild_vs1-2	mapflag	nocommand 	1
+guild_vs1	mapflag	nocommand	1
+pvp_y_8-2	mapflag	nocommand	1
+1@orcs	mapflag	nocommand	1
+guild_vs3	mapflag	nocommand	1
+
+guild_vs2	mapflag	nosave	SavePoint
+guild_vs5	mapflag	nosave	SavePoint
+guild_vs4	mapflag	nosave	SavePoint
+guild_vs1-2	mapflag	nosave	SavePoint
+guild_vs1	mapflag	nosave	SavePoint
+pvp_y_8-2	mapflag	nosave	SavePoint
+1@orcs	mapflag	nosave	SavePoint
+guild_vs3	mapflag	nosave	SavePoint
+
+guild_vs2	mapflag	noteleport
+guild_vs5	mapflag	noteleport
+guild_vs4	mapflag	noteleport
+guild_vs1-2	mapflag	noteleport
+guild_vs1	mapflag	noteleport
+pvp_y_8-2	mapflag	noteleport
+1@orcs	mapflag	noteleport
+guild_vs3	mapflag	noteleport
