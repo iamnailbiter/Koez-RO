@@ -39,7 +39,6 @@
 		end;
 L_NotChamp:
 		mes "Kamu bukan Champion...";
-		cutin "",2;
 		close;
 
 	case 3: // Baby PvP Room
