@@ -1,19 +1,11 @@
 //= Poring Catcher - Auto Event Script
-//===== By: 
-
-================================================================================
+//===== By: ================================================================================
 //= Washi - www.EarthBound-RO.com
-//===== Compatible With: 
-
-====================================================================
+//===== Compatible With: ====================================================================
 //= Any eAthena Version
-//===== Description: 
-
-========================================================================
+//===== Description: ========================================================================
 //= Single NPC that starts automatically starts every hour.
-//===== Additional Comments: 
-
-================================================================
+//===== Additional Comments: ================================================================
 //= This script is a combenation of the Dice Event by [Mahina]
 //= and the origonal Poring Catcher Event by [Wild Karrd]
 //================================================================================
@@ -40,9 +32,7 @@ OnGMStart:
 	announce "Poring Catcher : It's time to play some Poring Catcher!",0;
     killmonster "poring_w01","All";
     sleep2 10000;
-    announce "Poring Catcher : Please make your way to the west side of our maintown, 
-
-Tower of God!",0;
+    announce "Poring Catcher : Please make your way to the west side of our maintown, Gonryun!",0;
     sleep2 10000;
     announce "Poring Catcher : After 1 minute, the portal will close!",0;
     sleep2 10000;
@@ -54,7 +44,7 @@ Tower of God!",0;
 OnTimer30000:
     announce "Poring Catcher : Last 30 seconds.",0;
     sleep2 5000;
-    announce "Poring Catcher : Hurry to the west side of TOG if you want to join.",0;
+    announce "Poring Catcher : Hurry to the middle of Gonryun if you want to join.",0;
     end;
     
 OnTimer50000:
@@ -136,9 +126,7 @@ gm_only:
 			mes "^FF0000Poring Catcher^000000";
 			mes "Here we go!";
 			close2;
-			announce "GM "+strcharinfo(0)+" has started the Poring Catcher 
-
-Event!",0;
+			announce "GM "+strcharinfo(0)+" has started the Poring Catcher Event!",0;
 			sleep 2000;
 			donpcevent "poring#announcer::OnGMStart";
 			end;
@@ -154,9 +142,7 @@ Event!",0;
 		mes "Hello, GM ^008000"+strcharinfo(0)+"^000000!";
 		mes "Do you want to stop the event?";
 		mes " ";
-		mes "^FF0000Note that you can only stop the event if it is already 
-
-starting.";
+		mes "^FF0000Note that you can only stop the event if it is already starting.";
 		mes "If the event is still on the giving of directions, it couldn't be 
 
 stopped!^000000";
@@ -188,27 +174,17 @@ stopped!^000000";
 		mes "^FF0000Poring Catcher^000000";
 		mes "What will be the new reward?";
 		input .@itemid;
-		if (getitemname(.@itemid) == "null" || getitemname(.@itemid) == "") 
-
-{next; mes "^FF0000Poring Catcher^000000"; mes "The item is not found in the 
-
-database.."; next; goto gm_only; }
+		if (getitemname(.@itemid) == "null" || getitemname(.@itemid) == ""){next; mes "^FF0000Poring Catcher^000000"; mes "The item is not found in the database.."; next; goto gm_only; }
 		set $rewarditem, .@itemid;
 		next;
 		mes "^FF0000Poring Catcher^000000";
-		mes "How many ^008000"+getitemname($rewarditem)+"s^000000 should we 
-
-give?";
+		mes "How many ^008000"+getitemname($rewarditem)+"s^000000 should we give?";
 		input .@itemamount;
-		if(.@itemamount <= 0) {next; mes "^FF0000Poring Catcher^000000"; mes 
-
-"Please input a # greater than 0"; next; goto gm_only; }
+		if(.@itemamount <= 0) {next; mes "^FF0000Poring Catcher^000000"; mes "Please input a # greater than 0"; next; goto gm_only; }
 		set $rewardamount,.@itemamount;
 		next;
 		mes "^FF0000Poring Catcher^000000";
-		mes "So, the winner will get ^008000"+$rewardamount+" "+getitemname
-
-($rewarditem)+"s";
+		mes "So, the winner will get ^008000"+$rewardamount+" "+getitemname($rewarditem)+"s";
 		next;
 		goto gm_only;
 	case 5:
@@ -246,9 +222,7 @@ poring_w01,100,127,4	script	Poring Catcher#evnt2	715,{
     mes "[Poring Catcher]";
     mes "Go home!";
     close2;
-    announce "Poring Catcher : All laugh at, "+.@name$+". - This player tried to cheat 
-
-the system. Muhahahahaha!",0;
+    announce "Poring Catcher : All laugh at, "+.@name$+". - This player tried to cheat the system. Muhahahahaha!",0;
     warp "gonryun",146,111;
     end;
 
@@ -264,9 +238,7 @@ L_PORING:
     mes "[Poring Catcher]";
     mes "Congrats. You've won.";
     close2;
-    announce "Poring Catcher : We have a winner, "+.@name$+". with "+$rewardamount+" 
-
-"+getitemname($rewarditem)+"s",0;
+    announce "Poring Catcher : We have a winner, "+.@name$+". with "+$rewardamount+" "+getitemname($rewarditem)+"s",0;
 
     getitem $rewarditem, $rewardamount; // SET THE 20085 TO THE ITEM ID OF YOUR PRIZE
 
@@ -276,41 +248,27 @@ L_PORING:
     end;
     
 OnEnable:
-    mapannounce "poring_w01","Poring Catcher : In 5 Minutes, I will be summoning 100 
-
-different Porings.",0;
+    mapannounce "poring_w01","Poring Catcher : In 5 Minutes, I will be summoning 100 different Porings.",0;
 	initnpctimer;
     sleep2 10000;
-    mapannounce "poring_w01","Poring Catcher : Only one of these Porings is the correct 
-
-Poring.",0;
+    mapannounce "poring_w01","Poring Catcher : Only one of these Porings is the correct Poring.",0;
     sleep2 10000;
-    mapannounce "poring_w01","Poring Catcher : The correct Poring is called [ Poring ], 
-
-all the other Porings have different names.",0;
+    mapannounce "poring_w01","Poring Catcher : The correct Poring is called [ Poring ], all the other Porings have different names.",0;
     sleep2 10000;
-    mapannounce "poring_w01","Poring Catcher : If you kill the wrong Poring, you're out 
-
-of the game.",0;
+    mapannounce "poring_w01","Poring Catcher : If you kill the wrong Poring, you're out of the game.",0;
     sleep2 10000;
-    mapannounce "poring_w01","Poring Catcher : The first player to kill the correct 
-
-Poring wins.",0;
+    mapannounce "poring_w01","Poring Catcher : The first player to kill the correct Poring wins.",0;
     sleep2 10000;
     mapannounce "poring_w01","Poring Catcher : That's that.. Now let's play...",0;
     goto L_Start;
     end;
 
 OnTimer270000:
-	mapannounce "poring_w01","Poring Catcher : Time is running out! You only got 30 
-
-seconds left!",0;
+	mapannounce "poring_w01","Poring Catcher : Time is running out! You only got 30 seconds left!",0;
 	end;	
 OnTimer300000:
 	stopnpctimer;
-	mapannounce "poring_w01","Poring Catcher : Time is up! No one found the correct 
-
-Poring!",0;
+	mapannounce "poring_w01","Poring Catcher : Time is up! No one found the correct Poring!",0;
 	atcommand "@doommap";
     killmonster "poring_w01","All";
 	sleep 3000;
@@ -330,22 +288,16 @@ L_Start:
     sleep2 1000;
     mapannounce "poring_w01","Poring Catcher : Lets Do This!",0;
     areamonster "poring_w01",84,119,121,90,"Poring",1002,1,"poringwin::OnMobKilled";
-    //areamonster 
-
-"poring_w01",84,119,121,90,"Pouring",1002,20,"poringlose::OnMobKilled";
-    //areamonster "poring_w01",84,119,121,90,"Proing",1002,20,"poringlose::OnMobKilled";
-    //areamonster 
-
-"poring_w01",84,119,121,90,"Poiring",1002,20,"poringlose::OnMobKilled";
-    //areamonster "poring_w01",84,119,121,90,"Poing",1002,20,"poringlose::OnMobKilled";
-    //areamonster 
-
-"poring_w01",84,119,121,90,"Porning",1002,20,"poringlose::OnMobKilled";
-    //areamonster "poring_w01",84,119,121,90,"PoriNg",1002,20,"poringlose::OnMobKilled";
-    //areamonster "poring_w01",84,119,121,90,"Porong",1002,20,"poringlose::OnMobKilled";
-    //areamonster "poring_w01",84,119,121,90,"P0ring",1002,10,"poringlose::OnMobKilled";
-    //areamonster "poring_w01",84,119,121,90,"Por1ng",1002,10,"poringlose::OnMobKilled";
-    //areamonster "poring_w01",84,119,121,90,"Porng",1002,1,"poringlose::OnMobKilled";
+    areamonster "poring_w01",84,119,121,90,"Pouring",1002,20,"poringlose::OnMobKilled";
+    areamonster "poring_w01",84,119,121,90,"Proing",1002,20,"poringlose::OnMobKilled";
+    areamonster "poring_w01",84,119,121,90,"Poiring",1002,20,"poringlose::OnMobKilled";
+    areamonster "poring_w01",84,119,121,90,"Poing",1002,20,"poringlose::OnMobKilled";
+    areamonster "poring_w01",84,119,121,90,"Porning",1002,20,"poringlose::OnMobKilled";
+    areamonster "poring_w01",84,119,121,90,"PoriNg",1002,20,"poringlose::OnMobKilled";
+    areamonster "poring_w01",84,119,121,90,"Porong",1002,20,"poringlose::OnMobKilled";
+    areamonster "poring_w01",84,119,121,90,"P0ring",1002,10,"poringlose::OnMobKilled";
+    areamonster "poring_w01",84,119,121,90,"Por1ng",1002,10,"poringlose::OnMobKilled";
+    areamonster "poring_w01",84,119,121,90,"Porng",1002,1,"poringlose::OnMobKilled";
     end;
 }
 
@@ -364,9 +316,7 @@ OnMobKilled:
 -	script	poringlose	-1,{
 
 OnMobKilled:
-    dispbottom "Poring Catcher : Wahaha, you're a loser! - I wasn't the correct 
-
-Poring.";
+    dispbottom "Poring Catcher : Wahaha, you're a loser! - I wasn't the correct Poring.";
     warp "gonryun",146,111;
     end;
 
