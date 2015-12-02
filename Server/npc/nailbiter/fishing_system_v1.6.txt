@@ -123,7 +123,7 @@ setarray $@FishingEquips[0],6010,5405,2270,2403,2607,2503,2605,2309;
 /*   If you choose two accessories they must have different ID's for the variables to work! */          
 setarray $@FishingEquipsRate[0],2,2,2,2,2,2,2,2;  // Successful fishing rates per equips.    
 setarray $@FishingEquipsExp[0],1,1,1,1,1,1,1,1;   // Bonus exp per equips.      
-setarray $@FishingEquipsNeed[0],6010,5405;       	// Main equips need for fishing.    
+setarray $@FishingEquipsNeed[0],30124,5405;       	// Main equips need for fishing.    
 setarray $@FishingEquipsPts[0],1,1,1,1,1,1,1,1;   // Per equip bonus fishing points.
 // ======== Exp/Level/Points/Title Setup ================================
 setarray $@LevelItemRate[0],					// Fishing item rates per level.
