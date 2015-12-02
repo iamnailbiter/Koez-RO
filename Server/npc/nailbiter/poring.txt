@@ -143,9 +143,7 @@ gm_only:
 		mes "Do you want to stop the event?";
 		mes " ";
 		mes "^FF0000Note that you can only stop the event if it is already starting.";
-		mes "If the event is still on the giving of directions, it couldn't be 
-
-stopped!^000000";
+		mes "If the event is still on the giving of directions, it couldn't be stopped!^000000";
 		next;
 		switch(select("Yes:No"))
 		{
