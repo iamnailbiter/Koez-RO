@@ -649,7 +649,7 @@ function	script	Fishing_Box_Menu	{
 			mes "Checking the manual...";
 			//cutin $@FBManualCutin1$,3;
 			next;
-			menu "[^aa55ff Fishing Box Switch^000000 ]",FishingBoxSwitch,"[ ^ff0000Fishing Box Status^000000 ]",FishingBox,"[ ^55ff7fMain Menu^000000 ]",MainMenu;
+			menu "[^aa55ff Fishing Box Switch^000000 ]",FishingBoxSwitch,"[ ^ff0000Fishing Box Status^000000 ]",FishingBox2,"[ ^55ff7fMain Menu^000000 ]",MainMenu;
 			close;
 			FishingBoxSwitch:
 				mes "[ ^00007fFishing Box Manual^000000 ]";
@@ -660,7 +660,7 @@ function	script	Fishing_Box_Menu	{
 				next;
 				menu "[Return]",ReturnTo;
 				close;
-			FishingBox:
+			FishingBox2:
 				mes "[ ^00007fFishing Box Manual^000000 ]";
 				mes "Fishing Box Status";
 				mes "When set to ^aa557f[ ON ]^000000, fishing rewards will be automatically be putted in your ^00007f[ Fishing Box ]^000000."; 
