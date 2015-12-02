@@ -985,21 +985,21 @@ npcshopattach "Fishing_Shop";
 end;
 function	ShopSettings {
 	switch( getarg(0) ){
-		Case 1:
+		case 1:
 			set @Currency$,"#FishingPoints";        // #SETUP FISHING SHOP HERE#
 			// Item ID Lists
 			setarray @ItemLists[0],501,502,503,504,505,506,507,508; // [ Fishing Gears ]
 			// Item Price
 			setarray @ItemCost[0],50,50,50,50,50,50,50,50;
 			break;
-		Case 2:
+		case 2:
 			set @Currency$,"#FishingPoints";  
 			// Item ID Lists
 			setarray @ItemLists[0],501,502,503,504,505;             // [ Fish Etc... ]
 			// Item Price
 			setarray @ItemCost[0],5,5,5,5,5;
 			break;
-		Case 3:
+		case 3:
 			set @Currency$,"#FishingPoints";
 						// Item ID Lists
 			setarray @ItemLists[0],501,501,501;                     // [ Fishing Materials : Lure, Hook, Line ] - Can be Zeny or item just change the currency.
