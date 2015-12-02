@@ -546,8 +546,8 @@ gonryun,147,65,4	script	Fishing Guru	560,{
 		//cutin $@FishingGuru1$,3;
 		next;
 		// =============================================================== DONT CHANGE ANYTHING HERE.
-		if($@Toggle == 0 || $@Toggle == 1 || $@Toggle == 2 ) { menu "^007744[ Fishing Rank ]^000000",FishingRank,"^3333ff[ Fish Box Level ]^000000",FishingBox; }	
-		if($@Toggle == 3 || $@Toggle == 4) { if(CanFishNow == 1) menu "^007744[ Fishing Rank ]^000000",FishingRank,"^3333ff[ Fish Box Level ]^000000",FishingBox; }
+		if($@Toggle == 0 || $@Toggle == 1 || $@Toggle == 2 ) { menu "^007744[ Fishing Rank ]^000000",FishingRank,"^3333ff[ Fish Box Level ]^000000",FishingBox1; }	
+		if($@Toggle == 3 || $@Toggle == 4) { if(CanFishNow == 1) menu "^007744[ Fishing Rank ]^000000",FishingRank,"^3333ff[ Fish Box Level ]^000000",FishingBox1; }
 		if($@Toggle == 3 || $@Toggle == 4) { if(CanFishNow == 0) menu "^00007f[ How to fish? ]^000000",FishInformation; }
 		// =============================================================== DONT CHANGE ANYTHING HERE.	
 		close;	
@@ -555,7 +555,7 @@ gonryun,147,65,4	script	Fishing Guru	560,{
 			next; callfunc "FishingManualQuest"; close; 
 		FishingRank: 
 			next; goto FishRank; close; 
-		FishingBox: 
+		FishingBox1: 
 			next; goto FBLevel; close; 	
 		FishRank: 
 			mes $@NPC_Fishing$ ; 
