@@ -1,0 +1,204 @@
+/*==================================================
+Banker
+by Zephy
+====================================================
+Description:
+
+A banker NPC for exchanging an item for zeny,
+vice versa, and storage of said item without
+using a SQL database.
+====================================================
+Additional Notes:
+
+- Make sure you take into consideration your 
+  input_max_value in /conf/script.conf.
+====================================================
+Changelog:
+	1.0 - Initial Release
+	1.5 - Fixed a few issues and added 
+		  colour to dialogue
+	2.0 - Added weight checker and moved
+		  a few things around.
+==================================================*/
+
+-	script	Banker	-1,{
+
+	mes .npc_name$;
+	mes "You currently have ^FF0000"+ #banknote +"^000000 ^0000CC"+ getitemname(.note_id) +"s^000000 in your account.";
+	mes " ";
+	mes "What would you like to do?";
+	next;
+	
+	// Main Menu
+	switch(select("Deposit ^0000CC"+ getitemname(.note_id) +"s^000000:Withdraw ^0000CC"+ getitemname(.note_id) +"s^000000:Exchange ^0000CC"+ getitemname(.note_id) +"s^000000:Cancel")) {
+
+		case 1: // Deposit item
+			mes .npc_name$;
+			mes "How many ^0000CC"+ getitemname(.note_id) +"s^000000 would you like to deposit?";
+			next;
+
+			input .@banknotedeposit; // Input amount to be stored
+
+			if (.@banknotedeposit <= 0) { // Checks if the player enters a number less than or equal to 0
+
+				mes .npc_name$;
+				mes "Please enter a number greater than zero.";
+				close;
+			}
+
+			if (.@banknotedeposit > countitem(.note_id)) { // Checks if the player has item amount
+
+				mes .npc_name$;
+				mes "You do not have enough ^0000CC"+ getitemname(.note_id) +"s^000000.";
+				close;
+			}
+
+			#banknote = #banknote+.@banknotedeposit; // Adds amount to current storage amount
+			delitem .note_id,.@banknotedeposit; // Deletes items
+			
+			mes .npc_name$;
+			mes "I have deposited ^FF0000"+ .@banknotedeposit +"^000000 ^0000CC"+ getitemname(.note_id) +"s^000000.";
+			mes "Come again soon.";
+			close;
+
+		case 2: // Withdraw item
+			mes .npc_name$;
+			mes "How many ^0000CC"+ getitemname(.note_id) +"s^000000 would you like to withdraw?";
+			next;
+
+			input .@banknotewithdraw; // Input amount to be withdrawn
+
+			if (.@banknotewithdraw <= 0) { // Checks if the player enters a number less than or equal to 0
+
+				mes .npc_name$;
+				mes "Please enter a number greater than zero.";
+				close;
+			}
+
+			if (.@banknotewithdraw > #banknote) { // Checks if the player has enough of the item in the storage
+
+				mes .npc_name$;
+				mes "You only have ^FF0000"+ #banknote +"^000000 ^0000CC"+ getitemname(.note_id) +"s^000000 in your account.";
+				close;
+			}
+			
+			if (checkweight(.note_id,.@banknotewithdraw) == 0) {
+
+				mes .npc_name$;
+				mes "Please reduce your weight before proceeding.";
+				close;
+			}
+
+			#banknote = #banknote-.@banknotewithdraw; // Reduces storage amount by amount withdrawn
+			getitem .note_id,.@banknotewithdraw; // Receive item
+
+			mes .npc_name$;
+			mes "I have withdrawn ^FF0000"+ .@banknotewithdraw +"^000000 ^0000CC"+ getitemname(.note_id) +"s^000000 from your account.";
+			mes "Come again soon.";
+			close;
+
+		case 3: // Exchange items
+			switch(select("^FF0000Zeny^000000 ---> ^0000CC"+ getitemname(.note_id) +"^000000:^0000CC"+ getitemname(.note_id) +"^000000 ---> ^FF0000Zeny^000000:Back")) {
+
+				case 1: // Zeny to item
+					mes .npc_name$;
+					mes "Please input the amount of ^0000CC"+ getitemname(.note_id) +"s^000000 you want.";
+					mes " ";
+					mes "The exchange rate is ^FF0000"+ .note_price +"^000000 zeny per ^0000CC"+ getitemname(.note_id) +"^000000.";
+					next;
+
+					input .@zenyexchange; // Input amount of bank notes
+					.@pricea = .@zenyexchange*.note_price; // Sets zeny amount
+
+					if (.@zenyexchange <= 0) { // Checks if amount entered is less than or equal to 0
+					
+						mes .npc_name$;
+						mes "Please enter a number greater than 0";
+						close;
+					}
+
+					if (Zeny < .@pricea) { // Checks if player has enough zeny
+					
+						mes .npc_name$;
+						mes "Please come back with more zeny or enter another value.";
+						close;
+					}
+					if (checkweight(.note_id,.@zenyexchange) == 0) { // Weight checker
+					
+						mes .npc_name$;
+						mes "Please come back when you have less weight.";
+						close;
+					}
+					
+					Zeny -= .@pricea; // Reduces zeny by amount inputted
+					getitem .note_id,.@zenyexchange; // Gives player notes
+
+					mes .npc_name$;
+					mes "I have exchanged ^FF0000"+ .@pricea +"^000000 zeny for ^FF0000"+ .@zenyexchange +"^000000 ^0000CC"+ getitemname(.note_id) +"s^000000.";
+					mes " ";
+					mes "Come again soon.";
+					close;
+
+				case 2: // Item to zeny
+					mes .npc_name$;
+					mes "Please input the amount of ^0000CC"+ getitemname(.note_id) +"s^000000 you would like to exchange for zeny.";
+					mes " ";
+					mes "The exchange rate is ^FF0000"+ .note_price +"^000000 zeny per ^0000CC"+ getitemname(.note_id) +"^000000.";
+					next;
+
+					input .@noteexchange; // Input amount of items
+					.@priceb = .@noteexchange*.note_price; // Sets zeny amount
+					
+					if (.@noteexchange <= 0) {
+					
+						mes .npc_name$;
+						mes "Please enter a number greater than 0";
+						close;
+					}
+					if (.@priceb + Zeny > .maxzeny) { // Checks if the player will reach their max zeny
+					
+						mes .npc_name$;
+						mes "Sorry, but you can not exchange this number of ^0000CC"+ getitemname(.note_id) +"s^000000 ";
+						mes "because you will exceed the maximum amount of zeny you can hold.";
+						close;
+					}
+
+					if (.@noteexchange > countitem(.note_id)) { // Checks if player has enough of the item
+					
+						mes .npc_name$;
+						mes "Please come back with more ^0000CC"+ getitemname(.note_id) +"s^000000 or enter another value.";
+						close;
+					}
+
+					delitem .note_id,.@noteexchange; // Deletes notes by amount entered
+					Zeny += .@priceb; // Gives player zeny
+
+					next;
+
+					mes .npc_name$;
+					mes "I have exchanged ^FF0000"+ .@noteexchange +"^000000 ^0000CC"+ getitemname(.note_id) +"s^000000 for ^FF0000"+ .@priceb +"^000000 zeny.";
+					mes "Come again soon.";
+					close;
+
+				case 3:
+					break;
+			}
+
+		case 4: // Cancel
+			mes .npc_name$;
+			mes "Come again soon.";
+			close;
+	}
+
+	// Configuration
+	OnInit:
+		.npc_name$ = "[^0000CCBanker^000000]"; // NPC name
+		
+		.note_id = 0; // Bank note ID
+		.note_price = 0; // Bank note price, in zeny
+		.maxzeny = 0; // Maximum amount of zeny a player can hold in your server
+}
+
+// Duplicates
+//===============================================================
+gonryun,144,115,5	duplicate(Banker)	Banker#prt	4_M_KHKYEL
