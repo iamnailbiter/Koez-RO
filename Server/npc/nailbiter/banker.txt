@@ -196,7 +196,7 @@ Changelog:
 		
 		.note_id = 0; // Bank note ID
 		.note_price = 0; // Bank note price, in zeny
-		.maxzeny = 0; // Maximum amount of zeny a player can hold in your server
+		.maxzeny = 1000000000; // Maximum amount of zeny a player can hold in your server
 }
 
 // Duplicates
