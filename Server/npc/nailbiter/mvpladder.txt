@@ -276,11 +276,11 @@ OnInit:
     set .totalround, getarraysize(.mvpid) -1;
 
     // item reward for completing each round
-    set .round_item_id, 30002;
+    set .round_item_id, 671;
     set .round_item_amount, 1;
 
     // item reward for completing the entire ladder
-    set .finish_item_id, 30001;
+    set .finish_item_id, 12103;
     set .finish_item_amount, 5;
 
     // bonus reward if ladder completed within a certain time (in minutes)
