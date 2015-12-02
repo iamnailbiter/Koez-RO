@@ -194,8 +194,8 @@ Changelog:
 	OnInit:
 		.npc_name$ = "[^0000CCBanker^000000]"; // NPC name
 		
-		.note_id = 0; // Bank note ID
-		.note_price = 0; // Bank note price, in zeny
+		.note_id = 677; // Bank note ID
+		.note_price = 1000000; // Bank note price, in zeny
 		.maxzeny = 1000000000; // Maximum amount of zeny a player can hold in your server
 }
 
