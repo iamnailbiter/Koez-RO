@@ -159,7 +159,7 @@ gonryun,166,99,3	script	MvP Ladder Warper	56,{
     }
     else
         announce "The party ["+ getpartyname( .party_id ) +"] has failed to finish the MvP ladder game.", bc_all;
-    mapwarp .eventmap$, .map$, .x, .y;
+    mapwarp .eventmap$, .Map$, .x, .y;
     killmonsterall .eventmap$;
     .party_id = .round = 0;
     end;
@@ -314,8 +314,8 @@ OnInit:
 //    Config Ends --------------------------------------------------------------
 
     mapannounce .eventmap$, "An administrator has refreshed the server. Please re-register. We apologize for the inconvenience.", bc_map;
-    getmapxy .map$, .x, .y, 1;
-    mapwarp .eventmap$, .map$, .x, .y;
+    getmapxy .Map$, .x, .y, 1;
+    mapwarp .eventmap$, .Map$, .x, .y;
     killmonsterall .eventmap$;
     .@size = getarraysize( .@mapflag );
     for ( .@i = 0; .@i < .@size; .@i++ )
