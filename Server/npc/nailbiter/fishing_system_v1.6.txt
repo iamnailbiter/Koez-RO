@@ -89,7 +89,7 @@ set $@FishingMode,1;	// 0 = Lil Troll Version (with Encounters and Rewarding Mom
 					// 1 = Automatic Fishing without Encounter and Rewarding Moments scene. (Grass Version)		
 set $@GrassNonAbuse,3;	// Set value to "rand(1,$@GrassNonAbuse)", for non-abusive Grass Version(Fish still hides recommended is 3).
 // ======== Fishing Animation ===========================================
-set $@Cuttins,1;		// Set to "1" if you would like to use cuttins over progressbar.
+set $@Cuttins,0;		// Set to "1" if you would like to use cuttins over progressbar.
 					// 0 = To use progressbar.
 // ======== NPC =======================================================//
 set $@NPC_Fishing$,"^00007f[Lil Troll]^000000";	// Fishing Guru Name - If you dont mind use my name. XD
