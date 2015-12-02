@@ -15,7 +15,7 @@
 
 gonryun,160,113		script	Item Mall	93,{
 	mes "[Thyrone]";
-	mes "Welcome to ^FF0000Your Ragnarok Name^000000 ^000088Quick Mall^000000.";
+	mes "Welcome to ^FF0000Reckoning Ragnarok^000000 ^000088Quick Mall^000000.";
 	mes "Hello there ^FF0000" + strcharinfo(0) + "^000000.";
 	mes "Please select what you want";
 	switch(select("Armors:Weapons:Etc:Nothing")) {

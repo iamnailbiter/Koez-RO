@@ -156,6 +156,7 @@ menu	"Pagdayaw",I_pagdayaw,
 	"Renown Detective's Cap",I_detective,
 	"Ribbon Hat",I_ribbonh,
 	"Rideword Hat",I_rideword,
+	"Robo eye",I_robo,
 	"Sakkat",I_sakkat,
 	"Sales Banner",I_sales,
 	"Sambrero",I_sambrero,
@@ -1136,6 +1137,14 @@ I_rideword:
 	mes "7x Book of the Blazing Sun";
 	mes "30x Memory Bookmark";
 	menu "Make",M_rideword,"Return to Menu",H_top;
+
+I_robo:
+	next;
+	mes "1x Binoculars";
+	mes "100x Metal Fragment";
+	mes "150x Cogwheel";
+	mes "100x Sticky Mucus";
+	menu "Make",M_robo,"Return to Menu",H_top;
 
 	
 I_sakkat:
@@ -2603,6 +2612,16 @@ M_rideword:
 	delitem 1555,7;
 	delitem 7015,30;
 	getitem 5208,1;
+	close;
+
+M_robo:
+	if(countitem(2296)<1 || countitem(7095)<100 || countitem(7093)<150 || countitem(938)<100)
+	goto M_insufficient;
+	delitem 2296,1;
+	delitem 7095,100;
+	delitem 7093,150;
+	delitem 938,100;
+	getitem 5325,1;
 	close;
 
 M_rribbon:

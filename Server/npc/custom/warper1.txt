@@ -30,6 +30,7 @@ menu	"Last Warp ^777777["+lastwarp$+"]^000000",-,
 		" ~ Fields",Fields,
 		" ~ Dungeons",Dungeons,
 		" ~ Guild Castles",Castles,
+		" ~ Guild Dungeons",Guild_Dungeons,
 		" ~ Instances",Instances,
 		" ~ Special Areas",Special;
 
@@ -450,9 +451,10 @@ I12: Restrict("RE");
 // --------------------------------------------------
 	Special:
 // --------------------------------------------------
-menu	"Vending Area",S1;
+menu	"Auction Hall",S1, "Battlegrounds",S2, "Casino",S3, "Eden Group Headquarters",S4,
+		"Gonryun Arena",S5, "Izlude Arena",S6, "Monster Race Arena",S7, "Turbo Track",S8;
 
-S1: Go("payon",157,214);
+S1: Go("auction_01",22,68);
 S2: Go("bat_room",154,150);
 S3: Go("cmd_in02",179,129);
 S4: Restrict("RE");
