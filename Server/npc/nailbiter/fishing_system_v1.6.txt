@@ -914,7 +914,7 @@ return;
 //                           LADDER BOARD                              //
 //=====================================================================//	
 gonryun,149,65,4	script	Fishing Ladder Board	857,{
-goto mainmenu; mainmenu: mes "[ ^aa557fFishing Ladder Board^000000 ]"; mes "You check the fishing ladder board."; next;
+goto MainMenu; MainMenu: mes "[ ^aa557fFishing Ladder Board^000000 ]"; mes "You check the fishing ladder board."; next;
 menu "[ ^aa557fInformation^000000 ]",FInfo,"[ ^ff0000Ranking^000000 ]",FRank,"[ ^aaaa7fExpedition^000000 ]",FExpe; 
 FInfo:  
 			mes "[ ^aa557fFishing Ladder Board^000000 ]";
@@ -942,14 +942,14 @@ FInfo:
 			mes "^55aaffRewarding Moments [ FM ]^000000"; }
 			//cutin $@FishingLadderExpe$,3; 
 			next; 
-			menu "^005500[ Return ]^000000",mainmenu; 
+			menu "^005500[ Return ]^000000",MainMenu; 
 			close; 
 // ======================================================= DONT CHANGE ANYTHING HERE UNLESS YOU KNOW HOW LADDER IS DONE...
 FRank: set .@frank,query_sql("SELECT `name`, `flvl`, `fexp`, `fpts`, `fcot` FROM `fishing_system` ORDER BY flvl DESC LIMIT 5",.@n$,.@fl,.@fe,.@fp,.@fc); 
 mes "Hall Of Fame: Fishing Ladder"; mes "^ff0000Name^000000:^ff5500[ FL ]^000000:^005500[ FE ]^000000:^55007f[ FP ]^000000:^55ffff[ FC ]^000000"; 
 //cutin $@FishingLadderRank$,3;
 for(set .@i,1; .@i <= .@frank; set .@i,.@i++) { mes .@i+". ["+.@n$[0]+"] ("+.@fl[0]+") ("+.@fe[0]+") ("+.@fp[0]+") ("+.@fc[0]+")"; 
-} next; menu "^005500[ Return ]^000000",mainmenu; close;  
+} next; menu "^005500[ Return ]^000000",MainMenu; close;  
 FExpe:  set .@fexpe,query_sql("SELECT `name`, `fsuc`, `ffail`, `fenc`, `fmom` FROM `fishing_system` ORDER BY fsuc DESC LIMIT 5",.@n1$,.@fs,.@ff,.@fn,.@fm);
 mes "Hall Of Fame: Fishing Ladder"; 
 if($@FishingMode == 0 ) { mes "^ff0000Name^000000:^005500[ FS ]^000000:^55aa00[ FF ]^000000:^ff5500[ FN ]^000000:^55ffff[ FM ]^000000"; }
@@ -958,7 +958,7 @@ for(set .@i,1; .@i <= .@fexpe; set .@i,.@i++){
 if($@FishingMode == 0 ) { mes .@i+". ["+.@n1$[0]+"] ("+.@fs[0]+") ("+.@ff[0]+") ("+.@fn[0]+") ("+.@fm[0]+")"; }
 if($@FishingMode == 1 ) { mes .@i+". ["+.@n1$[0]+"] ("+.@fs[0]+") ("+.@ff[0]+")"; } }
 //cutin $@FishingLadderExpe$,3;
-next; menu "^005500[ Return ]^000000",mainmenu; close; end; }
+next; menu "^005500[ Return ]^000000",MainMenu; close; end; }
 // ======================================================= DONT CHANGE ANYTHING HERE UNLESS YOU KNOW HOW LADDER IS DONE...	
 /////////////////////////////////////////////////////////////////////////
 //                           FISHING SHOP                              //
@@ -983,7 +983,7 @@ mes "^00FF00____________________________^000000";
 callshop "Fishing_Shop",1;
 npcshopattach "Fishing_Shop";
 end;
-function	ShopSettings	{
+function	ShopSettings {
 	switch( getarg(0) ){
 		Case 1:
 			set @Currency$,"#FishingPoints";        // #SETUP FISHING SHOP HERE#
