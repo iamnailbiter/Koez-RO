@@ -114,7 +114,7 @@ announce "Mr. Manager: We have a winner! well done "+strcharinfo(0)+".",0;
 getitem 673,5; // Change This item id to what ever you want . item id,amount
 dispbottom "You Received 5x Bronze Coins for winning the LMS Event.";
 mes "You will return now";
-warp "Gonryun",160,115;
+warp "gonryun",160,115;
 disablenpc "Mr. Banker";
 close;
 end;
