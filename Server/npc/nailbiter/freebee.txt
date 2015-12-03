@@ -1,0 +1,70 @@
+//===== Happy Scripts ================================== 
+//= Freebee
+//===== By: ================================================== 
+//= Happy
+//===== Current Version: ===================================== 
+//= 1.0
+//===== Compatible With: ===================================== 
+//= Hercules
+//===== Description: =========================================
+// Resettable Freebie Giver. More freeee stuffs!
+//===== Comments: ============================================
+//= Change npc coordinates and item ids/amounts etcs
+//===== Additional Comments: =================================
+//= 1.00 Initial Release
+//===== Contact Ifo: =========================================
+//= http://hercules.ws/board/user/164-happy/
+//============================================================
+gonryun,141,117,5	script	More Free Stuffs	1874,{
+		
+	mes "[Free Bee]";
+	mes "Whoooooooo Arrrreeee yooouuuu? bZzz bzZz";
+	mes "WhatZz dozz youzZ wantZZz?";
+	if(getgmlevel() >= .GM){
+		set .@i,select("More Free Stuffs!:Leave:Reset Variables");
+	} else {  
+		set .@i,select("More Free Stuffs!:Leave"); 
+	}
+	switch(.@i) {
+		case 3:
+			next;
+			mes "Are you sure you want to delete";
+			mes "ALL freebie records?";
+			if(select("No:Yes")==1) close;
+			next;
+			mes "Wait one Moment...";
+			mes ".....";
+			query_sql("DELETE FROM `char_reg_num_db` WHERE `key` = 'hpy_got_freebie'");
+			set .@self, getcharid(3);
+			set .@size, query_sql("select account_id from `char` where online = 1", .@aid);
+			for(set .@i,0; .@i<.@size; set .@i,.@i+1) {
+				if(attachrid(.@aid[.@i])){
+					set hpy_got_freebie,0;
+				}	
+			}
+			attachrid(.@self);
+			mes "Cleared";
+			close;
+		case 1:
+			next;
+			if (!hpy_got_freebie) {
+				set hpy_got_freebie,1;
+				for (set .@i,0; .@i < getarraysize(.hpy_freebie); set .@i, .@i +1) {
+					getitem .hpy_freebie[.@i],.hpy_freebie_amt[.@i];
+				}
+				mes "Enjoy!";
+			} else {
+				mes "You already got your free bee!";
+			}
+			close;
+		case 2:
+			close;
+	}
+	
+	OnInit:
+		/* *CONFIG */
+		set .GM,99; 					  // Group required to reset
+		setarray .hpy_freebie[0],30130; // enter the itemids
+		setarray .hpy_freebie_amt[0],1; // enter the amount of the items
+		/* on the example above, it gives 3x 607(ygg) and 5x 608(yggseed) */
+}
